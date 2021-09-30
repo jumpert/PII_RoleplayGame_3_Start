@@ -1,13 +1,15 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Dwarf : Enemigo
+    public class ArcherHeroe: Heroes
     {
-        public Dwarf(string name)
+        public ArcherHeroe(string name)
             :base(name)
         {
-            this.AddItem(new Axe());
+            this.AddItem(new Bow());
             this.AddItem(new Helmet());
         }
+
+        
     }
 }

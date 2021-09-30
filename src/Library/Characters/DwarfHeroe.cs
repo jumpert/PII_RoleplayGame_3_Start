@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Dwarf : Enemigo
+    public class DwarfHeroe: Heroes
     {
-        public Dwarf(string name)
+        public DwarfHeroe(string name)
             :base(name)
         {
             this.AddItem(new Axe());

@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Wizard: MagicEnemigo
+    public class WizardHeroes: MagicHeroes
     {
-        public Wizard(string name)
+        public WizardHeroes(string name)
             :base(name)
         {            
             this.AddItem(new Staff());

@@ -1,10 +1,10 @@
 namespace RoleplayGame
 {
-    public abstract class Heroes : Character
+    public abstract class MagicHeroes : MagicCharacter
     {
         protected int acumulaPV;
 
-        public Heroes(string name)
+        public MagicHeroes(string name)
             :base(name)
         {
 
