@@ -1,22 +1,32 @@
 using System.Collections.Generic;
+
 namespace RoleplayGame
 {
-    public class Archer: Character
+    public abstract class Character
     {
-        //private int health = 100;
+        private int health = 100;
 
-        //private List<IItem> items = new List<IItem>();
-
-        public Archer(string name)
-            :base(name)
+        protected List<IItem> items = new List<IItem>();
+         
+        protected Character(string name)
         {
-            this.AddItem(new Bow());
-            this.AddItem(new Helmet());
+            this.Name = name;
+        }
+        public string Name { get; set; }
+
+        public int Health
+        {
+            get
+            {
+                return this.health;
+            }
+            private set
+            {
+                this.health = value < 0 ? 0 : value;
+            }
         }
 
-        /*public string Name { get; set; }
-        
-        public int AttackValue
+        public virtual int AttackValue
         {
             get
             {
@@ -32,7 +42,7 @@ namespace RoleplayGame
             }
         }
 
-        public int DefenseValue
+        public virtual int DefenseValue
         {
             get
             {
@@ -48,16 +58,19 @@ namespace RoleplayGame
             }
         }
 
-        public int Health
+        public void AddItem(IItem item)
         {
-            get
-            {
-                return this.health;
-            }
-            private set
-            {
-                this.health = value < 0 ? 0 : value;
-            }
+            this.items.Add(item);
+        }
+
+        public void RemoveItem(IItem item)
+        {
+            this.items.Remove(item);
+        }
+
+        public void Cure()
+        {
+            this.Health = 100;
         }
 
         public void ReceiveAttack(int power)
@@ -67,20 +80,5 @@ namespace RoleplayGame
                 this.Health -= power - this.DefenseValue;
             }
         }
-
-        public void Cure()
-        {
-            this.Health = 100;
-        }
-
-        public void AddItem(IItem item)
-        {
-            this.items.Add(item);
-        }
-
-        public void RemoveItem(IItem item)
-        {
-            this.items.Remove(item);
-        }*/
     }
 }

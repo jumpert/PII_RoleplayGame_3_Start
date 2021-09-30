@@ -1,21 +1,20 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class Dwarf: ICharacter
+    public class Dwarf: Character
     {
-        private int health = 100;
+        //private int health = 100;
 
-        private List<IItem> items = new List<IItem>();
+        //private List<IItem> items = new List<IItem>();
 
         public Dwarf(string name)
+            :base(name)
         {
-            this.Name = name;
-            
             this.AddItem(new Axe());
             this.AddItem(new Helmet());
         }
 
-        public string Name { get; set; }
+        /*public string Name { get; set; }
         
         public int AttackValue
         {
@@ -82,6 +81,6 @@ namespace RoleplayGame
         public void RemoveItem(IItem item)
         {
             this.items.Remove(item);
-        }
+        }*/
     }
 }
