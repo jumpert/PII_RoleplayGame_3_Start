@@ -2,7 +2,7 @@ namespace RoleplayGame
 {
     public abstract class Heroes : Character
     {
-        protected int acumulaPV;
+        public int AcumulaPV;
 
         public Heroes(string name)
             :base(name)
@@ -10,14 +10,13 @@ namespace RoleplayGame
 
         }
 
-        public void MatarEnemigo(Enemigo personaje)
+        public int EstadoEnemigo(Enemigo personaje)
         {
             if (personaje.Health <= 0)
             {
-                this.acumulaPV += personaje.ValorPV;
+                this.AcumulaPV += personaje.ValorPV;
             }
+            return this.AcumulaPV;
         }
-
-
     }
 }

@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 namespace RoleplayGame
 {
-    public class WizardHeroes: MagicHeroes
+    public class DarkWizard: Enemigo, IMagicCharacter
     {
-        public WizardHeroes(string name)
+        private List<IMagicalItem> magicalItems = new List<IMagicalItem>();
+
+        public DarkWizard(string name)
             :base(name)
         {            
             this.AddItem(new Staff());
@@ -54,6 +56,16 @@ namespace RoleplayGame
                 }
                 return value;
             }
+        }
+
+        public void AddItem(IMagicalItem item)
+        {
+            this.magicalItems.Add(item);
+        }
+
+        public void RemoveItem(IMagicalItem item)
+        {
+            this.magicalItems.Remove(item);
         }
     }
 }
