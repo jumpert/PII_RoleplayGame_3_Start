@@ -1,18 +1,27 @@
 using NUnit.Framework;
+using RoleplayGame;
+
 
 namespace Test.Library
 {
+    [TestFixture]
     public class Tests
     {
-        [SetUp]
-        public void Setup()
+        [Test]
+        public void TestPjs()
         {
+            DarkArcher maton = new DarkArcher("Maton");
+            const string expected = "maton";
+            Assert.AreEqual(expected, maton.Name);
         }
 
         [Test]
-        public void Test1()
+        public void TestPjs1()
         {
-            Assert.Pass();
+            HeroeKnight markus = new HeroeKnight("Markus");
+            DarkWizard dario = new DarkWizard("Dario"); 
+            
+            Assert.AreEqual(markus, dario);
         }
     }
 }

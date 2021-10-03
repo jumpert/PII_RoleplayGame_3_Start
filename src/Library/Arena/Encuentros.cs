@@ -109,8 +109,8 @@ namespace RoleplayGame
                     
                     rondas ++;
                     
-                    if (enemigoLista.Count == 0 || heroesLista.Count == 0)
                     {
+                    if (enemigoLista.Count == 0 || heroesLista.Count == 0 || rondas == 10)
                         seguir = false;
                     }
                     
