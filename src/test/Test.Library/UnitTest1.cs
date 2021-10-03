@@ -8,19 +8,28 @@ namespace Test.Library
     public class Tests
     {
         [Test]
-        public void TestPjs()
+        public void TestPjsEncuentro()
         {
             DarkArcher maton = new DarkArcher("Maton");
-            const string expected = "maton";
-            Assert.AreEqual(expected, maton.Name);
+            DarkDwarf tronco = new DarkDwarf("Tronco");
+            DarkWizard tirador = new DarkWizard("Tirador");
+            Encuentros testEnc = new Encuentros();
+            testEnc.AddEnemigo(maton);
+            testEnc.AddEnemigo(tronco);
+            testEnc.AddEnemigo(tirador); 
+            testEnc.DoEncounters();
+            
+            string expected = $"{testEnc.ToString()}";
+            
+            Assert.AreEqual(expected, testEnc.ToString() );
         }
 
         [Test]
         public void TestPjs1()
         {
             HeroeKnight markus = new HeroeKnight("Markus");
-            DarkWizard dario = new DarkWizard("Dario"); 
-            
+            Character dario = new DarkWizard("Dario"); 
+            dario = markus;
             Assert.AreEqual(markus, dario);
         }
     }
