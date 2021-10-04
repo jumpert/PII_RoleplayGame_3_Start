@@ -7,10 +7,12 @@ namespace RoleplayGame
 {
     public class Encuentros
     {
+        // En las listas privadas es donde se almacenan los herores y los enemigos que formaran parte en el encuentro
+        // se creo una lista independiente para cada uno, dependiendo del tipo
         private List<Heroes>  heroesLista = new List<Heroes>();       
         private List<Enemigo> enemigoLista = new List<Enemigo>();
         
-
+        // Se crearon 2 metodos publicos para poder agregar los personajes al encuentro segun su tipo (enemigo/heroe)
         public void AddHeroes(Heroes heroe)
         {
             this.heroesLista.Add(heroe);
@@ -21,6 +23,9 @@ namespace RoleplayGame
             this.enemigoLista.Add(enemigo);
         }
 
+        //El metodo DoEncounters es el que realiza las acciones de los personajes segun se explicito en la letra del ejercicio
+        // a su vez tiene un StringBuilder que permite ir visionando el transcurso del encuentro y va mostrando lo que se va ejecutando
+        // hasta que el encuentro termina y marca que bando es el ganador del mismo
         public void DoEncounters()
         {
             bool seguir = true;
@@ -36,14 +41,14 @@ namespace RoleplayGame
                     if (enemigoLista.Capacity <= heroesLista.Capacity )
                     {
                         batallas = 0;
-                        foreach (Enemigo enemigo in enemigoLista)
+                        foreach (Enemigo enemigo in enemigoLista)       //recorre la lista de enemigos para saber a quien le toca atacar
                         {
-                            batallas ++;
+                            batallas ++;        //sirve de incremento para que vaya cambiando el heroe que es atacado
                             heroesLista[batallas-1].ReceiveAttack(enemigo.AttackValue);
                             reporte.Append($"El Heroe {heroesLista[batallas -1].Name} recibio un ataque de {enemigo.Name}.\n");
                         }
                         reporte.Append("- Estado de los Herores:\n");                        
-                        foreach (Heroes heroe in heroesLista)
+                        foreach (Heroes heroe in heroesLista)       //consulta el estado de los herores, si alguno esta muerto ya no puede volver a participar del encuentro y es retirado de la lista
                         {
                             if (heroe.Health <= 0)
                             {
@@ -77,22 +82,22 @@ namespace RoleplayGame
                     batallas = 0;
                     rondas ++;
                     reporte.Append($"Ronda {rondas}: \n");
-                    foreach (Heroes heroe in heroesLista)
+                    foreach (Heroes heroe in heroesLista)           //recorre la lista de heroes para saber quien ataca
                     {
                         reporte.Append($"-El Heroe {heroe.Name} atacó a:\n");
-                        foreach (Enemigo enemigo in enemigoLista)
+                        foreach (Enemigo enemigo in enemigoLista)       //a diferencia del ataque de los enemigos, aca cada heroe ataca 1 vez a cada enemigo (por medio de recorrer la lista)
                         {
                             enemigo.ReceiveAttack(heroe.AttackValue);
                             heroe.EstadoEnemigo(enemigo);
                             reporte.Append($"--> {enemigo.Name}\n"); 
                             batallas ++;
                         }
-                        if (heroe.AcumulaPV >=5)
+                        if (heroe.AcumulaPV >=5)            // consulta si el heroe alcanzo los 5 pv para curarse
                         {
                             heroe.Cure();
                             reporte.Append($"El Heroe {heroe.Name} obtuvo 5 VP y se curo.\n");
                         }
-                        for (int i = 0; i < batallas; i++)
+                        for (int i = 0; i < batallas; i++)          //consulta el estado de los enemigos, para saber si ya a muerto y quitarlo de la lista de participantes
                         {
                             if (enemigoLista.Capacity != 0 && enemigoLista != null)
                             {
@@ -110,7 +115,7 @@ namespace RoleplayGame
                     rondas ++;
                     
                     {
-                    if (enemigoLista.Count == 0 || heroesLista.Count == 0 || rondas == 10)
+                    if (enemigoLista.Count == 0 || heroesLista.Count == 0 || rondas == 10)  //chequea que las listas no esten vacias (lo que indicaría que algun) bando ya perdio todos sus participantes, o que los turnos ya fueron 10 (que es el tope)
                         seguir = false;
                     }
                     

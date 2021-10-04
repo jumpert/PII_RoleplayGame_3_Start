@@ -14,6 +14,9 @@ namespace RoleplayGame
         }
         public string Name { get; set; }
 
+        /* Por medio de la utilizacion de la clase Character se crea una SuperClase que engloba a todos los personajes del programa
+        con esta super clase se pueden crear todos los personajes.  */
+
         public int Health
         {
             get
